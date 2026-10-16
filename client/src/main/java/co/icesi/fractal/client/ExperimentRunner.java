@@ -74,15 +74,19 @@ public class ExperimentRunner {
             // Tipo 0 (FixedCount): N = 2, 4, 8, 16 franjas
             // Tipo 1 (FixedTileSize): S = 32, 64, 128, 256 px
             int[][] testCases = {
-                {0, 2},   // Franjas: 2
-                {0, 4},   // Franjas: 4
-                {0, 8},   // Franjas: 8
-                {0, 16},  // Franjas: 16
-                {1, 32},  // Baldosas: 32x32 px
-                {1, 64},  // Baldosas: 64x64 px (grano optimo)
-                {1, 128}, // Baldosas: 128x128 px
-                {1, 256}  // Baldosas: 256x256 px (grano grueso)
+                    {0, 2},   // Franjas: 2
+                    {0, 4},   // Franjas: 4
+                    {0, 8},   // Franjas: 8
+                    {0, 16},  // Franjas: 16
+                    {1, 16},  // Baldosas: 16x16 px (grano ultrafino)
+                    {1, 32},  // Baldosas: 32x32 px
+                    {1, 64},  // Baldosas: 64x64 px (grano optimo)
+                    {1, 128}, // Baldosas: 128x128 px
+                    {1, 256}  // Baldosas: 256x256 px (grano grueso)
             };
+            System.out.println("Calentando el cluster (corrida descartada)...");
+            master.renderFractal(new RenderConfig("warmup", width, height,
+                    xMin, xMax, yMin, yMax, maxIter, 1, 64));
 
             System.out.println("| Estrategia | Parámetro | Tareas Generadas | T_sec (ms) | T_dist (ms) | Speedup (S) | Eficiencia (E) |");
             System.out.println("| :--- | :---: | :---: | :---: | :---: | :---: | :---: |");
